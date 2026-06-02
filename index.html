@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Sedang Diperbaiki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Under Construction | Developer at Work</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,8 @@
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
@@ -41,13 +43,14 @@
       padding: 0;
       font-family: var(--font-body);
       color: var(--color-text);
-      background-color: #3a0a14; /* Sesuai base body CSS Anda */
+      background-color: #3a0a14;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
       perspective: 1000px;
+      position: relative;
     }
 
     /* ── EFEK MESH GRADIENT (Sama persis dengan CSS Anda) ── */
@@ -65,7 +68,7 @@
         linear-gradient(160deg, #4a0c16 0%, #2a0810 40%, #3d0b18 70%, #1e0709 100%);
     }
 
-    /* ── FLOATING BLOB DRIFT LAYER (Sama persis dengan CSS Anda) ── */
+    /* ── FLOATING BLOB DRIFT LAYER ── */
     body::after {
       content: "";
       position: fixed;
@@ -102,81 +105,146 @@
       background-size: 72px 72px;
     }
 
-    /* ── CONTAINER UTAMA (GLASSMORPHISM STYLE) ── */
+    /* ── CONTAINER UTAMA DENGAN FLEX ── */
     .maintenance-panel {
-      max-width: 580px;
+      max-width: 780px;
       width: calc(100% - 40px);
       text-align: center;
-      padding: 60px 40px;
+      padding: 50px 40px 55px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, rgba(168, 15, 45, 0.25) 0%, rgba(93, 10, 24, 0.4) 100%);
+      background: linear-gradient(135deg, rgba(168, 15, 45, 0.28) 0%, rgba(93, 10, 24, 0.45) 100%);
       box-shadow: var(--shadow-card), inset 0 2px 4px rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(32px);
       -webkit-backdrop-filter: blur(32px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      animation: panelPopIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: panelPopIn 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
     }
 
     @keyframes panelPopIn {
-      from { transform: scale(0.8) translateY(40px); opacity: 0; }
+      from { transform: scale(0.9) translateY(30px); opacity: 0; }
       to { transform: scale(1) translateY(0); opacity: 1; }
     }
 
-    /* ── EMBLEM ANIMASI / LOGO MEKANIK ── */
-    .emblem-container {
-      margin-bottom: 35px;
+    /* ── KARAKTER KODING (ANIMASI DEVELOPER ACTIVE) ── */
+    .coder-avatar {
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
       position: relative;
-      display: inline-block;
     }
-
-    .maintenance-emblem {
-      width: 100px;
-      height: 100px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(217, 183, 120, 0.2));
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    
+    .coding-character {
+      background: rgba(25, 15, 20, 0.65);
+      backdrop-filter: blur(4px);
+      border-radius: 48px;
+      padding: 14px 20px 12px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(217, 183, 120, 0.3);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+      transition: all 0.2s ease;
+    }
+    
+    /* Ilustrasi avatar stylized: orang coding */
+    .dev-icon {
       position: relative;
-      animation: floatGraphic 4s ease-in-out infinite;
+      width: 64px;
+      height: 64px;
+      background: radial-gradient(circle at 30% 30%, rgba(217,183,120,0.25), rgba(80,30,40,0.5));
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(217,183,120,0.5);
     }
-
-    /* Efek Ring Pulsa Glowing */
-    .maintenance-emblem::after {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border: 2px solid var(--color-secondary);
-      border-radius: calc(var(--radius-lg) + 8px);
-      opacity: 0;
-      animation: pulseGlow 2.5s cubic-bezier(0.24, 1, 0.32, 1) infinite;
-    }
-
-    /* Ikon Gear SVG */
-    .maintenance-emblem svg {
-      width: 48px;
-      height: 48px;
+    
+    .dev-icon svg {
+      width: 42px;
+      height: 42px;
       fill: var(--color-secondary);
-      filter: drop-shadow(0 4px 12px rgba(217, 183, 120, 0.4));
-      animation: spinGear 8s linear infinite;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+      animation: subtleFloat 3s infinite ease;
     }
-
-    @keyframes spinGear {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    
+    @keyframes subtleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
     }
-
-    @keyframes floatGraphic {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    
+    /* TANGAN MENGETIK + EFEK TEKS */
+    .coding-terminal {
+      text-align: left;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 18px;
+      padding: 12px 16px;
+      min-width: 210px;
+      backdrop-filter: blur(4px);
+      border-left: 3px solid var(--color-secondary);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
     }
-
-    @keyframes pulseGlow {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      100% { transform: scale(1.2); opacity: 0; }
+    
+    .terminal-line {
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #d9b778;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-
+    
+    .prompt {
+      color: #9cdcfe;
+      font-weight: 600;
+    }
+    
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2rem;
+      background-color: var(--color-secondary);
+      vertical-align: middle;
+      margin-left: 3px;
+      animation: blinkCursor 0.8s step-end infinite;
+    }
+    
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .code-animation {
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 5px 0;
+      margin-top: 8px;
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #b0c4de;
+      letter-spacing: 0.3px;
+    }
+    
+    .code-line {
+      white-space: nowrap;
+      overflow: hidden;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .code-line span.keyword { color: #c586c0; }
+    .code-line span.func { color: #dcdcaa; }
+    .code-line span.string { color: #ce9178; }
+    
+    /* Efek mengetik dinamis */
+    .dynamic-code p {
+      margin: 3px 0;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #ddd;
+    }
+    
     /* ── BADGE LABEL PERBAIKAN ── */
     .status-label {
       display: inline-flex;
@@ -234,7 +302,7 @@
 
     /* ── LOADING BAR/LINE ANIMASI (Khas CSS Anda) ── */
     .loading-line {
-      width: 220px;
+      width: 240px;
       height: 3px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.08);
@@ -254,6 +322,68 @@
       0% { transform: translateX(-150%); }
       100% { transform: translateX(250%); }
     }
+    
+    /* ── TOMBOL KAPSUL WHATSAPP (HORIZONTAL / MEMANJANG) ── */
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: linear-gradient(105deg, #25D366 0%, #128C7E 100%);
+      padding: 12px 32px;
+      border-radius: 999px; /* kapsul memanjang horizontal */
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      font-family: var(--font-body);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      margin: 8px 0 35px 0;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(2px);
+      cursor: pointer;
+    }
+    
+    .whatsapp-button:hover {
+      transform: scale(1.02) translateY(-3px);
+      box-shadow: 0 20px 32px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(105deg, #31d46f, #0f9d7e);
+    }
+    
+    .whatsapp-button:active {
+      transform: scale(0.98);
+      transition: 0.05s linear;
+    }
+    
+    .wa-icon {
+      width: 22px;
+      height: 22px;
+      fill: white;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+    }
+    
+    .wa-text {
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    
+    /* Responsive: pada layar kecil, tombol tetap proporsional */
+    @media (max-width: 550px) {
+      .whatsapp-button {
+        padding: 10px 24px;
+        gap: 10px;
+      }
+      .wa-text {
+        font-size: 0.9rem;
+      }
+      .wa-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
 
     /* ── FOOTER / COPY ── */
     .footer-note {
@@ -261,39 +391,319 @@
       color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.05em;
     }
+    
+    /* Efek partikel atau terminal glow */
+    .code-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, #d9b778, transparent);
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      animation: particleFade 2s infinite ease-in-out;
+    }
+    
+    @keyframes particleFade {
+      0% { opacity: 0; transform: translateY(0) scale(0.5);}
+      50% { opacity: 0.6; transform: translateY(-12px) scale(1);}
+      100% { opacity: 0; transform: translateY(-22px) scale(0);}
+    }
   </style>
 </head>
 <body>
 
   <div class="ambient-grid"></div>
-
+  <!-- Partikel dinamis buatan JavaScript nanti -->
   <div class="maintenance-panel">
     
-    <div class="emblem-container">
-      <div class="maintenance-emblem">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l-.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
-        </svg>
+    <!-- AREA KARAKTER CODING (animasi lebih hidup) -->
+    <div class="coder-avatar">
+      <div class="coding-character">
+        <div class="dev-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6zm6 4h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        </div>
+        <div class="coding-terminal">
+          <div class="terminal-line">
+            <span class="prompt">$</span>
+            <span id="typing-text" style="color: #e5e9f0;">npm run dev</span>
+            <span class="typing-cursor"></span>
+          </div>
+          <div class="code-animation" id="codeSnippet">
+            <div class="code-line"><span class="keyword">const</span> <span class="func">buildUI</span> = () => {</div>
+            <div class="code-line" style="padding-left: 12px;"><span class="keyword">return</span> <span class="string">'✨ immersive experience'</span>;</div>
+            <div class="code-line">};</div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div>
-      <div class="status-label">Pemeliharaan Sistem</div>
+      <div class="status-label">Pemeliharaan & Upgrade Sistem</div>
     </div>
 
-    <h1>Website Sedang Diperbaiki</h1>
+    <h1>Sedang Membangun<br>Pengalaman Baru</h1>
     
-    <p>Kami sedang melakukan peningkatan performa dan memperbarui sistem untuk memberikan pengalaman terbaik untuk Anda. Mohon tunggu beberapa saat lagi.</p>
+    <p>Developer kami sedang menulis kode dengan penuh semangat untuk memberikan performa terbaik & fitur revolusioner. Website akan segera hadir lebih cepat, lebih elegan.</p>
+
+    <!-- ── TOMBOL KAPSUL WHATSAPP (tanpa nomor, tetapi mengarahkan ke WA) ── -->
+    <a href="https://wa.me/6281522775390?text=Halo%20Admin%20Mediator,%20saya%20melihat%20website%20sedang%20dalam%20pemeliharaan.%20Mohon%20informasi%20lebih%20lanjut." 
+       class="whatsapp-button" 
+       target="_blank" 
+       rel="noopener noreferrer">
+      <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2 6.798 2 2.552 6.246 2.552 11.454c0 1.698.444 3.355 1.29 4.814L2 22l5.858-1.802c1.404.768 2.983 1.176 4.618 1.176 5.208 0 9.454-4.246 9.454-9.454 0-2.523-.984-4.896-2.77-6.682l-.083-.09zM12.006 20.05c-1.436 0-2.846-.386-4.062-1.112l-.293-.174-3.472 1.067 1.112-3.364-.19-.3a7.97 7.97 0 0 1-1.233-4.22c0-4.406 3.586-7.992 7.992-7.992 2.133 0 4.138.83 5.645 2.337a7.935 7.935 0 0 1 2.338 5.645c0 4.406-3.586 7.992-7.992 7.992h-.045zm4.348-5.983c-.238-.119-1.408-.695-1.627-.774-.218-.08-.377-.119-.536.119-.158.238-.624.775-.764.934-.14.16-.28.18-.518.06-.238-.12-1.005-.37-1.914-1.18-.707-.63-1.185-1.408-1.324-1.647-.14-.238-.015-.367.105-.486.108-.108.238-.278.357-.417.12-.14.16-.238.238-.397.08-.16.04-.298-.02-.417-.06-.12-.536-1.29-.734-1.767-.193-.462-.39-.4-.537-.408a9.55 9.55 0 0 0-.456-.008c-.16 0-.417.06-.636.298-.22.238-.833.813-.833 1.982 0 1.17.852 2.3.97 2.46.12.16 1.666 2.542 4.03 3.563.563.243 1.002.388 1.344.497.564.18 1.077.154 1.482.093.453-.068 1.394-.57 1.59-1.12.196-.55.196-1.02.138-1.118-.06-.1-.22-.16-.46-.278z"/>
+      </svg>
+      <span class="wa-text">Hubungi Admin Mediator</span>
+    </a>
 
     <div class="loading-line">
       <span></span>
     </div>
 
     <div class="footer-note">
-      &copy; 2026 Hak Cipta Dilindungi.
+      &copy; 2026 Hak Cipta Dilindungi · Deployment Progress
     </div>
-
   </div>
 
+  <script>
+    // ============= ANIMASI ORANG KODING LEBIH HIDUP =============
+    // 1. Efek mengetik pada terminal (teks bergantian seperti developer sedang mengerjakan)
+    const terminalElement = document.getElementById('typing-text');
+    const commands = [
+      'git commit -m "feat: enhance UX"', 
+      'npx optimize --all', 
+      'pnpm run build:next', 
+      'deploy --env=production',
+      'refactor(animations): smooth transitions',
+      'testing: e2e passed ✓',
+      '✔️  finalizing core system'
+    ];
+    let cmdIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let currentText = '';
+    
+    function typeEffect() {
+      const fullCommand = commands[cmdIndex % commands.length];
+      if (isDeleting) {
+        currentText = fullCommand.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          cmdIndex = (cmdIndex + 1) % commands.length;
+          setTimeout(typeEffect, 180);
+          return;
+        }
+      } else {
+        currentText = fullCommand.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === fullCommand.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1800);
+          return;
+        }
+      }
+      if (terminalElement) terminalElement.innerText = currentText;
+      const speed = isDeleting ? 45 : 90;
+      setTimeout(typeEffect, speed);
+    }
+    
+    // 2. Animasi kode snippet dinamis berganti setiap 3 detik (seperti orang menulis script)
+    const codeContainer = document.getElementById('codeSnippet');
+    const snippets = [
+      `<div class="code-line"><span class="keyword">function</span> <span class="func">updateLayout</span>() {</div>
+       <div class="code-line" style="padding-left: 12px;"><span class="keyword">await</span> loadNewAssets();</div>
+       <div class="code-line" style="padding-left: 12px;">animateComponents();</div>
+       <div class="code-line">}</div>`,
+       
+      `<div class="code-line"><span class="keyword">import</span> { motion } <span class="keyword">from</span> <span class="string">'framer-motion'</span>;</div>
+       <div class="code-line"><span class="keyword">const</span> Hero = () => (</div>
+       <div class="code-line" style="padding-left: 12px;">&lt;motion.div animate={{opacity:1}} /&gt;</div>
+       <div class="code-line">);</div>`,
+       
+      `<div class="code-line"><span class="keyword">.glass-panel</span> {</div>
+       <div class="code-line" style="padding-left: 12px;">backdrop-filter: blur(<span class="string">24px</span>);</div>
+       <div class="code-line" style="padding-left: 12px;">background: radial-gradient(...);</div>
+       <div class="code-line">}</div>`,
+       
+      `<div class="code-line"><span class="keyword">const</span> <span class="func">buildSystem</span> = () => {</div>
+       <div class="code-line" style="padding-left: 12px;"><span class="keyword">return</span> <span class="string">'performance + elegance'</span>;</div>
+       <div class="code-line">};</div>
+       <div class="code-line">buildSystem(); <span class="string">// ready</span></div>`
+    ];
+    
+    let snippetIdx = 0;
+    function rotateSnippet() {
+      if (!codeContainer) return;
+      // Fade transisi
+      codeContainer.style.transition = 'opacity 0.25s ease';
+      codeContainer.style.opacity = '0';
+      setTimeout(() => {
+        snippetIdx = (snippetIdx + 1) % snippets.length;
+        codeContainer.innerHTML = snippets[snippetIdx];
+        codeContainer.style.opacity = '1';
+      }, 200);
+    }
+    
+    // 3. Partikel interaktif yang keluar dari area coding, seperti "kode" yang melayang.
+    function createParticles() {
+      const avatarArea = document.querySelector('.coder-avatar');
+      if (!avatarArea) return;
+      setInterval(() => {
+        const particle = document.createElement('div');
+        particle.classList.add('code-particle');
+        const rect = avatarArea.getBoundingClientRect();
+        const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 70;
+        const y = rect.top + rect.height - 10;
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.position = 'fixed';
+        particle.style.zIndex = '999';
+        document.body.appendChild(particle);
+        setTimeout(() => {
+          particle.remove();
+        }, 2000);
+      }, 1100);
+    }
+    
+    // 4. Efek visual gerakan tangan (tambahan pseudo style dynamic)
+    // menambah efek glow pada baris terminal secara berkala
+    
+    function addGlowEffectOnTerminal() {
+      const terminalDiv = document.querySelector('.coding-terminal');
+      if (!terminalDiv) return;
+      setInterval(() => {
+        terminalDiv.style.transition = 'box-shadow 0.3s ease';
+        terminalDiv.style.boxShadow = '0 0 14px rgba(217, 183, 120, 0.4)';
+        setTimeout(() => {
+          terminalDiv.style.boxShadow = '0 5px 12px rgba(0,0,0,0.2)';
+        }, 500);
+      }, 3200);
+    }
+    
+    // 5. Animasi pada ikon developer seperti 'sedang mengetik' (sentuhan)
+    function animateDevIcon() {
+      const devSvg = document.querySelector('.dev-icon svg');
+      if (devSvg) {
+        setInterval(() => {
+          devSvg.style.transform = 'scale(0.97) rotate(1deg)';
+          setTimeout(() => {
+            devSvg.style.transform = 'scale(1) rotate(0deg)';
+          }, 180);
+        }, 2100);
+      }
+    }
+    
+    // Random "kode" karakter berjatuhan mengelilingi panel (tiny flourish)
+    function addFloatingCodeChars() {
+      const panel = document.querySelector('.maintenance-panel');
+      if (!panel) return;
+      const chars = ['</>', '{}', '()', '=>', 'const', '✨', '💻', '⚙️'];
+      setInterval(() => {
+        const span = document.createElement('span');
+        span.innerText = chars[Math.floor(Math.random() * chars.length)];
+        span.style.position = 'absolute';
+        span.style.fontSize = '0.8rem';
+        span.style.fontFamily = 'monospace';
+        span.style.opacity = '0.4';
+        span.style.color = '#d9b778';
+        span.style.pointerEvents = 'none';
+        span.style.left = Math.random() * 80 + 10 + '%';
+        span.style.top = '-20px';
+        span.style.zIndex = '5';
+        span.style.transition = 'all 3s linear';
+        panel.style.position = 'relative';
+        panel.appendChild(span);
+        
+        let y = 0;
+        const fall = setInterval(() => {
+          y += 1.5;
+          span.style.transform = `translateY(${y}px)`;
+          if (y > 550) {
+            clearInterval(fall);
+            span.remove();
+          }
+        }, 25);
+        setTimeout(() => {
+          if (span && span.remove) span.remove();
+          clearInterval(fall);
+        }, 4000);
+      }, 2400);
+    }
+    
+    // 6. Mengganti teks status terminal berjalan dengan efek developer working
+    function enhanceCursorBlink() {
+      const cursor = document.querySelector('.typing-cursor');
+      if (cursor) {
+        setInterval(() => {
+          cursor.style.opacity = (cursor.style.opacity === '0' ? '1' : '0');
+        }, 550);
+      }
+    }
+    
+    // inisialisasi semua animasi yang berhubungan dengan 'orang koding'
+    window.addEventListener('load', () => {
+      typeEffect();               // mengetik command bergantian
+      rotateSnippet();           // snippet berubah tiap 3.4 detik
+      setInterval(() => rotateSnippet(), 3800);
+      createParticles();         // efek partikel developer coding
+      addGlowEffectOnTerminal(); // terminal glowing
+      animateDevIcon();          // gerakan kecil ikon
+      addFloatingCodeChars();    // karakter kode apung
+      enhanceCursorBlink();      // perkuat cursor berkedip
+      
+      // tambahan efek mouse interaksi: ketika hover pada avatar, efek "coding semangat"
+      const codingZone = document.querySelector('.coding-character');
+      if (codingZone) {
+        codingZone.addEventListener('mouseenter', () => {
+          const lineEffect = document.querySelector('.loading-line span');
+          if (lineEffect) lineEffect.style.animationDuration = '0.9s';
+          const terminalDiv = document.querySelector('.coding-terminal');
+          if (terminalDiv) terminalDiv.style.borderLeftColor = '#ffd966';
+          setTimeout(() => {
+            if (lineEffect) lineEffect.style.animationDuration = '1.8s';
+            if (terminalDiv) terminalDiv.style.borderLeftColor = 'var(--color-secondary)';
+          }, 600);
+        });
+      }
+      
+      // Efek dinamis tambahan: menampilkan kode status yang fresh
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        h1.addEventListener('animationiteration', () => {});
+      }
+      
+      // Membuat efek 'developer sedang menulis kode lebih realistis' pada code snippet
+      let extraMessages = [
+        "// optimizing rendering...",
+        "// refactoring components ✨",
+        "// merging pull request",
+        "// deployment pipeline active"
+      ];
+      let msgIdx = 0;
+      setInterval(() => {
+        const codeBlock = document.getElementById('codeSnippet');
+        if (codeBlock && !codeBlock.innerHTML.includes(extraMessages[msgIdx])) {
+          const commentSpan = document.createElement('div');
+          commentSpan.style.fontSize = '0.68rem';
+          commentSpan.style.color = '#92b5a9';
+          commentSpan.style.marginTop = '6px';
+          commentSpan.style.fontFamily = 'monospace';
+          commentSpan.innerText = extraMessages[msgIdx % extraMessages.length];
+          const existingComment = codeBlock.querySelector('.extra-comment');
+          if (existingComment) existingComment.remove();
+          commentSpan.classList.add('extra-comment');
+          codeBlock.appendChild(commentSpan);
+          msgIdx++;
+          setTimeout(() => {
+            if (commentSpan) commentSpan.remove();
+          }, 2400);
+        }
+      }, 4700);
+    });
+  </script>
 </body>
 </html>
