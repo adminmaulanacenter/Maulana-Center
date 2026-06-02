@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── MENYALIN VARIABEL DAN THEME WARNA DARI CSS ANDA ── */
+    /* ── VARIABEL DAN THEME WARNA ── */
     :root {
       --color-bg: #fbf8f1;
       --color-surface: rgba(255, 255, 255, 0.82);
@@ -49,11 +49,10 @@
       align-items: center;
       justify-content: center;
       overflow-x: hidden;
-      perspective: 1000px;
       position: relative;
     }
 
-    /* ── EFEK MESH GRADIENT (Sama persis dengan CSS Anda) ── */
+    /* ── EFEK MESH GRADIENT ── */
     body::before {
       content: "";
       position: fixed;
@@ -105,7 +104,7 @@
       background-size: 72px 72px;
     }
 
-    /* ── CONTAINER UTAMA DENGAN FLEX ── */
+    /* ── CONTAINER UTAMA ── */
     .maintenance-panel {
       max-width: 780px;
       width: calc(100% - 40px);
@@ -118,6 +117,8 @@
       -webkit-backdrop-filter: blur(32px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       animation: panelPopIn 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes panelPopIn {
@@ -125,7 +126,7 @@
       to { transform: scale(1) translateY(0); opacity: 1; }
     }
 
-    /* ── KARAKTER KODING (ANIMASI DEVELOPER ACTIVE) ── */
+    /* ── KARAKTER KODING ── */
     .coder-avatar {
       margin-bottom: 32px;
       display: flex;
@@ -146,7 +147,6 @@
       transition: all 0.2s ease;
     }
     
-    /* Ilustrasi avatar stylized: orang coding */
     .dev-icon {
       position: relative;
       width: 64px;
@@ -172,7 +172,6 @@
       50% { transform: translateY(-4px); }
     }
     
-    /* TANGAN MENGETIK + EFEK TEKS */
     .coding-terminal {
       text-align: left;
       background: rgba(0, 0, 0, 0.45);
@@ -237,15 +236,7 @@
     .code-line span.func { color: #dcdcaa; }
     .code-line span.string { color: #ce9178; }
     
-    /* Efek mengetik dinamis */
-    .dynamic-code p {
-      margin: 3px 0;
-      font-family: monospace;
-      font-size: 0.72rem;
-      color: #ddd;
-    }
-    
-    /* ── BADGE LABEL PERBAIKAN ── */
+    /* ── BADGE LABEL ── */
     .status-label {
       display: inline-flex;
       align-items: center;
@@ -277,7 +268,7 @@
       to { opacity: 1; }
     }
 
-    /* ── TYPOGRAPHY / TEKS ── */
+    /* ── TYPOGRAPHY ── */
     h1 {
       font-family: var(--font-display);
       font-size: clamp(2.2rem, 5vw, 3.2rem);
@@ -300,7 +291,7 @@
       margin-right: auto;
     }
 
-    /* ── LOADING BAR/LINE ANIMASI (Khas CSS Anda) ── */
+    /* ── LOADING BAR ── */
     .loading-line {
       width: 240px;
       height: 3px;
@@ -323,7 +314,7 @@
       100% { transform: translateX(250%); }
     }
     
-    /* ── TOMBOL KAPSUL WHATSAPP (HORIZONTAL / MEMANJANG) ── */
+    /* ── TOMBOL WHATSAPP ── */
     .whatsapp-button {
       display: inline-flex;
       align-items: center;
@@ -331,7 +322,7 @@
       gap: 14px;
       background: linear-gradient(105deg, #25D366 0%, #128C7E 100%);
       padding: 12px 32px;
-      border-radius: 999px; /* kapsul memanjang horizontal */
+      border-radius: 999px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
       text-decoration: none;
       color: white;
@@ -370,7 +361,6 @@
       white-space: nowrap;
     }
     
-    /* Responsive: pada layar kecil, tombol tetap proporsional */
     @media (max-width: 550px) {
       .whatsapp-button {
         padding: 10px 24px;
@@ -385,39 +375,63 @@
       }
     }
 
-    /* ── FOOTER / COPY ── */
+    /* ── FOOTER ── */
     .footer-note {
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.05em;
     }
     
-    /* Efek partikel atau terminal glow */
+    /* ── EFEK PARTIKEL (DIPERBAIKI) ── */
     .code-particle {
-      position: absolute;
+      position: fixed;
       width: 4px;
       height: 4px;
       background: radial-gradient(circle, #d9b778, transparent);
       border-radius: 50%;
       opacity: 0;
       pointer-events: none;
-      animation: particleFade 2s infinite ease-in-out;
+      z-index: 999;
+      animation: particleFade 2s ease-out forwards;
     }
     
     @keyframes particleFade {
       0% { opacity: 0; transform: translateY(0) scale(0.5);}
-      50% { opacity: 0.6; transform: translateY(-12px) scale(1);}
-      100% { opacity: 0; transform: translateY(-22px) scale(0);}
+      20% { opacity: 0.7; transform: translateY(-8px) scale(1);}
+      100% { opacity: 0; transform: translateY(-30px) scale(0);}
+    }
+    
+    /* Floating chars container - tidak mengganggu layout */
+    .floating-chars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .floating-char {
+      position: absolute;
+      font-family: monospace;
+      font-size: 0.8rem;
+      opacity: 0.4;
+      color: #d9b778;
+      pointer-events: none;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
   <div class="ambient-grid"></div>
-  <!-- Partikel dinamis buatan JavaScript nanti -->
+  <div class="floating-chars-container" id="floatingCharsContainer"></div>
+  
   <div class="maintenance-panel">
     
-    <!-- AREA KARAKTER CODING (animasi lebih hidup) -->
+    <!-- AREA KARAKTER CODING -->
     <div class="coder-avatar">
       <div class="coding-character">
         <div class="dev-icon">
@@ -448,7 +462,7 @@
     
     <p>Developer kami sedang menulis kode dengan penuh semangat untuk memberikan performa terbaik & fitur revolusioner. Website akan segera hadir lebih cepat, lebih elegan.</p>
 
-    <!-- ── TOMBOL KAPSUL WHATSAPP (tanpa nomor, tetapi mengarahkan ke WA) ── -->
+    <!-- TOMBOL WHATSAPP -->
     <a href="https://wa.me/6281522775390?text=Halo%20Admin%20Mediator,%20saya%20melihat%20website%20sedang%20dalam%20pemeliharaan.%20Mohon%20informasi%20lebih%20lanjut." 
        class="whatsapp-button" 
        target="_blank" 
@@ -469,8 +483,7 @@
   </div>
 
   <script>
-    // ============= ANIMASI ORANG KODING LEBIH HIDUP =============
-    // 1. Efek mengetik pada terminal (teks bergantian seperti developer sedang mengerjakan)
+    // ============= ANIMASI ORANG KODING =============
     const terminalElement = document.getElementById('typing-text');
     const commands = [
       'git commit -m "feat: enhance UX"', 
@@ -511,7 +524,7 @@
       setTimeout(typeEffect, speed);
     }
     
-    // 2. Animasi kode snippet dinamis berganti setiap 3 detik (seperti orang menulis script)
+    // Animasi kode snippet
     const codeContainer = document.getElementById('codeSnippet');
     const snippets = [
       `<div class="code-line"><span class="keyword">function</span> <span class="func">updateLayout</span>() {</div>
@@ -538,7 +551,6 @@
     let snippetIdx = 0;
     function rotateSnippet() {
       if (!codeContainer) return;
-      // Fade transisi
       codeContainer.style.transition = 'opacity 0.25s ease';
       codeContainer.style.opacity = '0';
       setTimeout(() => {
@@ -548,7 +560,7 @@
       }, 200);
     }
     
-    // 3. Partikel interaktif yang keluar dari area coding, seperti "kode" yang melayang.
+    // Partikel - DIPERBAIKI: tidak mengganggu layout
     function createParticles() {
       const avatarArea = document.querySelector('.coder-avatar');
       if (!avatarArea) return;
@@ -556,21 +568,49 @@
         const particle = document.createElement('div');
         particle.classList.add('code-particle');
         const rect = avatarArea.getBoundingClientRect();
-        const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 70;
-        const y = rect.top + rect.height - 10;
+        const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 80;
+        const y = rect.top + rect.height - 5;
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
-        particle.style.position = 'fixed';
-        particle.style.zIndex = '999';
         document.body.appendChild(particle);
         setTimeout(() => {
-          particle.remove();
+          if (particle && particle.remove) particle.remove();
         }, 2000);
-      }, 1100);
+      }, 1200);
     }
     
-    // 4. Efek visual gerakan tangan (tambahan pseudo style dynamic)
-    // menambah efek glow pada baris terminal secara berkala
+    // Floating chars - DIPERBAIKI: menggunakan container terpisah
+    function addFloatingCodeChars() {
+      const container = document.getElementById('floatingCharsContainer');
+      if (!container) return;
+      const chars = ['</>', '{}', '()', '=>', 'const', '✨', '💻', '⚙️', '[]', '...'];
+      
+      setInterval(() => {
+        const span = document.createElement('span');
+        span.className = 'floating-char';
+        span.innerText = chars[Math.floor(Math.random() * chars.length)];
+        span.style.left = Math.random() * 90 + 5 + '%';
+        span.style.top = '-30px';
+        span.style.fontSize = (Math.random() * 0.5 + 0.6) + 'rem';
+        span.style.opacity = Math.random() * 0.4 + 0.2;
+        container.appendChild(span);
+        
+        let y = 0;
+        const fall = setInterval(() => {
+          y += 1.2;
+          span.style.transform = `translateY(${y}px)`;
+          if (y > window.innerHeight + 50) {
+            clearInterval(fall);
+            if (span && span.remove) span.remove();
+          }
+        }, 30);
+        
+        setTimeout(() => {
+          clearInterval(fall);
+          if (span && span.remove) span.remove();
+        }, 8000);
+      }, 2500);
+    }
     
     function addGlowEffectOnTerminal() {
       const terminalDiv = document.querySelector('.coding-terminal');
@@ -584,7 +624,6 @@
       }, 3200);
     }
     
-    // 5. Animasi pada ikon developer seperti 'sedang mengetik' (sentuhan)
     function animateDevIcon() {
       const devSvg = document.querySelector('.dev-icon svg');
       if (devSvg) {
@@ -597,44 +636,6 @@
       }
     }
     
-    // Random "kode" karakter berjatuhan mengelilingi panel (tiny flourish)
-    function addFloatingCodeChars() {
-      const panel = document.querySelector('.maintenance-panel');
-      if (!panel) return;
-      const chars = ['</>', '{}', '()', '=>', 'const', '✨', '💻', '⚙️'];
-      setInterval(() => {
-        const span = document.createElement('span');
-        span.innerText = chars[Math.floor(Math.random() * chars.length)];
-        span.style.position = 'absolute';
-        span.style.fontSize = '0.8rem';
-        span.style.fontFamily = 'monospace';
-        span.style.opacity = '0.4';
-        span.style.color = '#d9b778';
-        span.style.pointerEvents = 'none';
-        span.style.left = Math.random() * 80 + 10 + '%';
-        span.style.top = '-20px';
-        span.style.zIndex = '5';
-        span.style.transition = 'all 3s linear';
-        panel.style.position = 'relative';
-        panel.appendChild(span);
-        
-        let y = 0;
-        const fall = setInterval(() => {
-          y += 1.5;
-          span.style.transform = `translateY(${y}px)`;
-          if (y > 550) {
-            clearInterval(fall);
-            span.remove();
-          }
-        }, 25);
-        setTimeout(() => {
-          if (span && span.remove) span.remove();
-          clearInterval(fall);
-        }, 4000);
-      }, 2400);
-    }
-    
-    // 6. Mengganti teks status terminal berjalan dengan efek developer working
     function enhanceCursorBlink() {
       const cursor = document.querySelector('.typing-cursor');
       if (cursor) {
@@ -644,18 +645,48 @@
       }
     }
     
-    // inisialisasi semua animasi yang berhubungan dengan 'orang koding'
+    // Ekstra komentar pada code snippet
+    let extraMessages = [
+      "// optimizing rendering...",
+      "// refactoring components ✨",
+      "// merging pull request",
+      "// deployment pipeline active"
+    ];
+    let msgIdx = 0;
+    
+    function addExtraComments() {
+      const codeBlock = document.getElementById('codeSnippet');
+      if (codeBlock && !codeBlock.innerHTML.includes(extraMessages[msgIdx % extraMessages.length])) {
+        const commentSpan = document.createElement('div');
+        commentSpan.style.fontSize = '0.68rem';
+        commentSpan.style.color = '#92b5a9';
+        commentSpan.style.marginTop = '6px';
+        commentSpan.style.fontFamily = 'monospace';
+        commentSpan.innerText = extraMessages[msgIdx % extraMessages.length];
+        const existingComment = codeBlock.querySelector('.extra-comment');
+        if (existingComment) existingComment.remove();
+        commentSpan.classList.add('extra-comment');
+        codeBlock.appendChild(commentSpan);
+        msgIdx++;
+        setTimeout(() => {
+          if (commentSpan && commentSpan.remove) commentSpan.remove();
+        }, 2400);
+      }
+    }
+    
+    // Inisialisasi semua animasi
     window.addEventListener('load', () => {
-      typeEffect();               // mengetik command bergantian
-      rotateSnippet();           // snippet berubah tiap 3.4 detik
+      typeEffect();
+      rotateSnippet();
       setInterval(() => rotateSnippet(), 3800);
-      createParticles();         // efek partikel developer coding
-      addGlowEffectOnTerminal(); // terminal glowing
-      animateDevIcon();          // gerakan kecil ikon
-      addFloatingCodeChars();    // karakter kode apung
-      enhanceCursorBlink();      // perkuat cursor berkedip
+      createParticles();
+      addGlowEffectOnTerminal();
+      animateDevIcon();
+      addFloatingCodeChars();
+      enhanceCursorBlink();
+      setInterval(() => addExtraComments(), 4700);
       
-      // tambahan efek mouse interaksi: ketika hover pada avatar, efek "coding semangat"
+      // Hover effect pada coding zone
       const codingZone = document.querySelector('.coding-character');
       if (codingZone) {
         codingZone.addEventListener('mouseenter', () => {
@@ -669,40 +700,6 @@
           }, 600);
         });
       }
-      
-      // Efek dinamis tambahan: menampilkan kode status yang fresh
-      const h1 = document.querySelector('h1');
-      if (h1) {
-        h1.addEventListener('animationiteration', () => {});
-      }
-      
-      // Membuat efek 'developer sedang menulis kode lebih realistis' pada code snippet
-      let extraMessages = [
-        "// optimizing rendering...",
-        "// refactoring components ✨",
-        "// merging pull request",
-        "// deployment pipeline active"
-      ];
-      let msgIdx = 0;
-      setInterval(() => {
-        const codeBlock = document.getElementById('codeSnippet');
-        if (codeBlock && !codeBlock.innerHTML.includes(extraMessages[msgIdx])) {
-          const commentSpan = document.createElement('div');
-          commentSpan.style.fontSize = '0.68rem';
-          commentSpan.style.color = '#92b5a9';
-          commentSpan.style.marginTop = '6px';
-          commentSpan.style.fontFamily = 'monospace';
-          commentSpan.innerText = extraMessages[msgIdx % extraMessages.length];
-          const existingComment = codeBlock.querySelector('.extra-comment');
-          if (existingComment) existingComment.remove();
-          commentSpan.classList.add('extra-comment');
-          codeBlock.appendChild(commentSpan);
-          msgIdx++;
-          setTimeout(() => {
-            if (commentSpan) commentSpan.remove();
-          }, 2400);
-        }
-      }, 4700);
     });
   </script>
 </body>
