@@ -126,7 +126,7 @@
       to { transform: scale(1) translateY(0); opacity: 1; }
     }
 
-    /* ── KARAKTER KODING ── */
+    /* ── KARAKTER KODING (STATIS, TANPA ANIMASI) ── */
     .coder-avatar {
       margin-bottom: 32px;
       display: flex;
@@ -144,7 +144,6 @@
       gap: 14px;
       border: 1px solid rgba(217, 183, 120, 0.3);
       box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
-      transition: all 0.2s ease;
     }
     
     .dev-icon {
@@ -164,12 +163,6 @@
       height: 42px;
       fill: var(--color-secondary);
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-      animation: subtleFloat 3s infinite ease;
-    }
-    
-    @keyframes subtleFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-4px); }
     }
     
     .coding-terminal {
@@ -198,19 +191,8 @@
       font-weight: 600;
     }
     
-    .typing-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1.2rem;
-      background-color: var(--color-secondary);
-      vertical-align: middle;
-      margin-left: 3px;
-      animation: blinkCursor 0.8s step-end infinite;
-    }
-    
-    @keyframes blinkCursor {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    .static-command {
+      color: #e5e9f0;
     }
     
     .code-animation {
@@ -291,7 +273,7 @@
       margin-right: auto;
     }
 
-    /* ── LOADING BAR ── */
+    /* ── LOADING BAR (HANYA ANIMASI RINGAN) ── */
     .loading-line {
       width: 240px;
       height: 3px;
@@ -330,7 +312,7 @@
       font-size: 1rem;
       letter-spacing: 0.5px;
       font-family: var(--font-body);
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       margin: 8px 0 35px 0;
       border: 1px solid rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(2px);
@@ -338,14 +320,13 @@
     }
     
     .whatsapp-button:hover {
-      transform: scale(1.02) translateY(-3px);
+      transform: scale(1.02) translateY(-2px);
       box-shadow: 0 20px 32px rgba(0, 0, 0, 0.4);
       background: linear-gradient(105deg, #31d46f, #0f9d7e);
     }
     
     .whatsapp-button:active {
       transform: scale(0.98);
-      transition: 0.05s linear;
     }
     
     .wa-icon {
@@ -373,6 +354,14 @@
         width: 18px;
         height: 18px;
       }
+      .coding-terminal {
+        min-width: 170px;
+        padding: 8px 12px;
+      }
+      .code-line {
+        white-space: normal;
+        word-break: keep-all;
+      }
     }
 
     /* ── FOOTER ── */
@@ -381,57 +370,15 @@
       color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.05em;
     }
-    
-    /* ── EFEK PARTIKEL (DIPERBAIKI) ── */
-    .code-particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: radial-gradient(circle, #d9b778, transparent);
-      border-radius: 50%;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 999;
-      animation: particleFade 2s ease-out forwards;
-    }
-    
-    @keyframes particleFade {
-      0% { opacity: 0; transform: translateY(0) scale(0.5);}
-      20% { opacity: 0.7; transform: translateY(-8px) scale(1);}
-      100% { opacity: 0; transform: translateY(-30px) scale(0);}
-    }
-    
-    /* Floating chars container - tidak mengganggu layout */
-    .floating-chars-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    
-    .floating-char {
-      position: absolute;
-      font-family: monospace;
-      font-size: 0.8rem;
-      opacity: 0.4;
-      color: #d9b778;
-      pointer-events: none;
-      white-space: nowrap;
-    }
   </style>
 </head>
 <body>
 
   <div class="ambient-grid"></div>
-  <div class="floating-chars-container" id="floatingCharsContainer"></div>
   
   <div class="maintenance-panel">
     
-    <!-- AREA KARAKTER CODING -->
+    <!-- AREA KARAKTER CODING (STATIS, TIDAK ADA ANIMASI) -->
     <div class="coder-avatar">
       <div class="coding-character">
         <div class="dev-icon">
@@ -442,8 +389,7 @@
         <div class="coding-terminal">
           <div class="terminal-line">
             <span class="prompt">$</span>
-            <span id="typing-text" style="color: #e5e9f0;">npm run dev</span>
-            <span class="typing-cursor"></span>
+            <span class="static-command">npm run dev</span>
           </div>
           <div class="code-animation" id="codeSnippet">
             <div class="code-line"><span class="keyword">const</span> <span class="func">buildUI</span> = () => {</div>
@@ -483,224 +429,12 @@
   </div>
 
   <script>
-    // ============= ANIMASI ORANG KODING =============
-    const terminalElement = document.getElementById('typing-text');
-    const commands = [
-      'git commit -m "feat: enhance UX"', 
-      'npx optimize --all', 
-      'pnpm run build:next', 
-      'deploy --env=production',
-      'refactor(animations): smooth transitions',
-      'testing: e2e passed ✓',
-      '✔️  finalizing core system'
-    ];
-    let cmdIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let currentText = '';
+    // Tidak ada animasi coding yang memberatkan
+    // Hanya efek hover pada tombol dan loading bar standar
+    // Halaman tetap ringan dan tidak lemot
     
-    function typeEffect() {
-      const fullCommand = commands[cmdIndex % commands.length];
-      if (isDeleting) {
-        currentText = fullCommand.substring(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          cmdIndex = (cmdIndex + 1) % commands.length;
-          setTimeout(typeEffect, 180);
-          return;
-        }
-      } else {
-        currentText = fullCommand.substring(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === fullCommand.length) {
-          isDeleting = true;
-          setTimeout(typeEffect, 1800);
-          return;
-        }
-      }
-      if (terminalElement) terminalElement.innerText = currentText;
-      const speed = isDeleting ? 45 : 90;
-      setTimeout(typeEffect, speed);
-    }
-    
-    // Animasi kode snippet
-    const codeContainer = document.getElementById('codeSnippet');
-    const snippets = [
-      `<div class="code-line"><span class="keyword">function</span> <span class="func">updateLayout</span>() {</div>
-       <div class="code-line" style="padding-left: 12px;"><span class="keyword">await</span> loadNewAssets();</div>
-       <div class="code-line" style="padding-left: 12px;">animateComponents();</div>
-       <div class="code-line">}</div>`,
-       
-      `<div class="code-line"><span class="keyword">import</span> { motion } <span class="keyword">from</span> <span class="string">'framer-motion'</span>;</div>
-       <div class="code-line"><span class="keyword">const</span> Hero = () => (</div>
-       <div class="code-line" style="padding-left: 12px;">&lt;motion.div animate={{opacity:1}} /&gt;</div>
-       <div class="code-line">);</div>`,
-       
-      `<div class="code-line"><span class="keyword">.glass-panel</span> {</div>
-       <div class="code-line" style="padding-left: 12px;">backdrop-filter: blur(<span class="string">24px</span>);</div>
-       <div class="code-line" style="padding-left: 12px;">background: radial-gradient(...);</div>
-       <div class="code-line">}</div>`,
-       
-      `<div class="code-line"><span class="keyword">const</span> <span class="func">buildSystem</span> = () => {</div>
-       <div class="code-line" style="padding-left: 12px;"><span class="keyword">return</span> <span class="string">'performance + elegance'</span>;</div>
-       <div class="code-line">};</div>
-       <div class="code-line">buildSystem(); <span class="string">// ready</span></div>`
-    ];
-    
-    let snippetIdx = 0;
-    function rotateSnippet() {
-      if (!codeContainer) return;
-      codeContainer.style.transition = 'opacity 0.25s ease';
-      codeContainer.style.opacity = '0';
-      setTimeout(() => {
-        snippetIdx = (snippetIdx + 1) % snippets.length;
-        codeContainer.innerHTML = snippets[snippetIdx];
-        codeContainer.style.opacity = '1';
-      }, 200);
-    }
-    
-    // Partikel - DIPERBAIKI: tidak mengganggu layout
-    function createParticles() {
-      const avatarArea = document.querySelector('.coder-avatar');
-      if (!avatarArea) return;
-      setInterval(() => {
-        const particle = document.createElement('div');
-        particle.classList.add('code-particle');
-        const rect = avatarArea.getBoundingClientRect();
-        const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 80;
-        const y = rect.top + rect.height - 5;
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        document.body.appendChild(particle);
-        setTimeout(() => {
-          if (particle && particle.remove) particle.remove();
-        }, 2000);
-      }, 1200);
-    }
-    
-    // Floating chars - DIPERBAIKI: menggunakan container terpisah
-    function addFloatingCodeChars() {
-      const container = document.getElementById('floatingCharsContainer');
-      if (!container) return;
-      const chars = ['</>', '{}', '()', '=>', 'const', '✨', '💻', '⚙️', '[]', '...'];
-      
-      setInterval(() => {
-        const span = document.createElement('span');
-        span.className = 'floating-char';
-        span.innerText = chars[Math.floor(Math.random() * chars.length)];
-        span.style.left = Math.random() * 90 + 5 + '%';
-        span.style.top = '-30px';
-        span.style.fontSize = (Math.random() * 0.5 + 0.6) + 'rem';
-        span.style.opacity = Math.random() * 0.4 + 0.2;
-        container.appendChild(span);
-        
-        let y = 0;
-        const fall = setInterval(() => {
-          y += 1.2;
-          span.style.transform = `translateY(${y}px)`;
-          if (y > window.innerHeight + 50) {
-            clearInterval(fall);
-            if (span && span.remove) span.remove();
-          }
-        }, 30);
-        
-        setTimeout(() => {
-          clearInterval(fall);
-          if (span && span.remove) span.remove();
-        }, 8000);
-      }, 2500);
-    }
-    
-    function addGlowEffectOnTerminal() {
-      const terminalDiv = document.querySelector('.coding-terminal');
-      if (!terminalDiv) return;
-      setInterval(() => {
-        terminalDiv.style.transition = 'box-shadow 0.3s ease';
-        terminalDiv.style.boxShadow = '0 0 14px rgba(217, 183, 120, 0.4)';
-        setTimeout(() => {
-          terminalDiv.style.boxShadow = '0 5px 12px rgba(0,0,0,0.2)';
-        }, 500);
-      }, 3200);
-    }
-    
-    function animateDevIcon() {
-      const devSvg = document.querySelector('.dev-icon svg');
-      if (devSvg) {
-        setInterval(() => {
-          devSvg.style.transform = 'scale(0.97) rotate(1deg)';
-          setTimeout(() => {
-            devSvg.style.transform = 'scale(1) rotate(0deg)';
-          }, 180);
-        }, 2100);
-      }
-    }
-    
-    function enhanceCursorBlink() {
-      const cursor = document.querySelector('.typing-cursor');
-      if (cursor) {
-        setInterval(() => {
-          cursor.style.opacity = (cursor.style.opacity === '0' ? '1' : '0');
-        }, 550);
-      }
-    }
-    
-    // Ekstra komentar pada code snippet
-    let extraMessages = [
-      "// optimizing rendering...",
-      "// refactoring components ✨",
-      "// merging pull request",
-      "// deployment pipeline active"
-    ];
-    let msgIdx = 0;
-    
-    function addExtraComments() {
-      const codeBlock = document.getElementById('codeSnippet');
-      if (codeBlock && !codeBlock.innerHTML.includes(extraMessages[msgIdx % extraMessages.length])) {
-        const commentSpan = document.createElement('div');
-        commentSpan.style.fontSize = '0.68rem';
-        commentSpan.style.color = '#92b5a9';
-        commentSpan.style.marginTop = '6px';
-        commentSpan.style.fontFamily = 'monospace';
-        commentSpan.innerText = extraMessages[msgIdx % extraMessages.length];
-        const existingComment = codeBlock.querySelector('.extra-comment');
-        if (existingComment) existingComment.remove();
-        commentSpan.classList.add('extra-comment');
-        codeBlock.appendChild(commentSpan);
-        msgIdx++;
-        setTimeout(() => {
-          if (commentSpan && commentSpan.remove) commentSpan.remove();
-        }, 2400);
-      }
-    }
-    
-    // Inisialisasi semua animasi
-    window.addEventListener('load', () => {
-      typeEffect();
-      rotateSnippet();
-      setInterval(() => rotateSnippet(), 3800);
-      createParticles();
-      addGlowEffectOnTerminal();
-      animateDevIcon();
-      addFloatingCodeChars();
-      enhanceCursorBlink();
-      setInterval(() => addExtraComments(), 4700);
-      
-      // Hover effect pada coding zone
-      const codingZone = document.querySelector('.coding-character');
-      if (codingZone) {
-        codingZone.addEventListener('mouseenter', () => {
-          const lineEffect = document.querySelector('.loading-line span');
-          if (lineEffect) lineEffect.style.animationDuration = '0.9s';
-          const terminalDiv = document.querySelector('.coding-terminal');
-          if (terminalDiv) terminalDiv.style.borderLeftColor = '#ffd966';
-          setTimeout(() => {
-            if (lineEffect) lineEffect.style.animationDuration = '1.8s';
-            if (terminalDiv) terminalDiv.style.borderLeftColor = 'var(--color-secondary)';
-          }, 600);
-        });
-      }
-    });
+    // Menambahkan efek sederhana pada saat hover tombol WhatsApp (sudah di CSS)
+    console.log('Page loaded - light mode, no heavy animations');
   </script>
 </body>
 </html>
