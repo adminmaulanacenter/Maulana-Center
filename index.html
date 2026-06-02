@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="google" content="notranslate" />
   <title>Under Construction | Developer at Work</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+    rel="stylesheet">
 
   <style>
     /* ── VARIABEL DAN THEME WARNA ── */
@@ -86,9 +90,20 @@
     }
 
     @keyframes blobDrift {
-      0% { transform: translate(0%, 0%) scale(1); opacity: 1; }
-      50% { transform: translate(-0.8%, 1.4%) scale(0.985); opacity: 0.98; }
-      100% { transform: translate(0.6%, 1%) scale(0.99); opacity: 1; }
+      0% {
+        transform: translate(0%, 0%) scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translate(-0.8%, 1.4%) scale(0.985);
+        opacity: 0.98;
+      }
+
+      100% {
+        transform: translate(0.6%, 1%) scale(0.99);
+        opacity: 1;
+      }
     }
 
     /* ── AMBIENT GRID LAYER ── */
@@ -109,7 +124,7 @@
       max-width: 780px;
       width: calc(100% - 40px);
       text-align: center;
-      padding: 50px 40px 55px;
+      padding: 60px 40px 55px;
       border-radius: var(--radius-xl);
       background: linear-gradient(135deg, rgba(168, 15, 45, 0.28) 0%, rgba(93, 10, 24, 0.45) 100%);
       box-shadow: var(--shadow-card), inset 0 2px 4px rgba(255, 255, 255, 0.1);
@@ -122,102 +137,43 @@
     }
 
     @keyframes panelPopIn {
-      from { transform: scale(0.9) translateY(30px); opacity: 0; }
-      to { transform: scale(1) translateY(0); opacity: 1; }
+      from {
+        transform: scale(0.9) translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
     }
 
-    /* ── KARAKTER KODING (STATIS, TANPA ANIMASI) ── */
-    .coder-avatar {
+    /* ── IKON DEVELOPER SEDERHANA ── */
+    .developer-icon {
       margin-bottom: 32px;
       display: flex;
       justify-content: center;
-      position: relative;
     }
-    
-    .coding-character {
+
+    .icon-circle {
       background: rgba(25, 15, 20, 0.65);
       backdrop-filter: blur(4px);
-      border-radius: 48px;
-      padding: 14px 20px 12px 22px;
+      border-radius: 80px;
+      padding: 20px;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      border: 1px solid rgba(217, 183, 120, 0.3);
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
-    }
-    
-    .dev-icon {
-      position: relative;
-      width: 64px;
-      height: 64px;
-      background: radial-gradient(circle at 30% 30%, rgba(217,183,120,0.25), rgba(80,30,40,0.5));
-      border-radius: 32px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      border: 1px solid rgba(217,183,120,0.5);
+      border: 1px solid rgba(217, 183, 120, 0.3);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
     }
-    
-    .dev-icon svg {
-      width: 42px;
-      height: 42px;
+
+    .icon-circle svg {
+      width: 56px;
+      height: 56px;
       fill: var(--color-secondary);
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
     }
-    
-    .coding-terminal {
-      text-align: left;
-      background: rgba(0, 0, 0, 0.45);
-      border-radius: 18px;
-      padding: 12px 16px;
-      min-width: 210px;
-      backdrop-filter: blur(4px);
-      border-left: 3px solid var(--color-secondary);
-      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
-    }
-    
-    .terminal-line {
-      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-      font-size: 0.85rem;
-      color: #d9b778;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    
-    .prompt {
-      color: #9cdcfe;
-      font-weight: 600;
-    }
-    
-    .static-command {
-      color: #e5e9f0;
-    }
-    
-    .code-animation {
-      background: rgba(0,0,0,0.3);
-      border-radius: 12px;
-      padding: 5px 0;
-      margin-top: 8px;
-      font-family: monospace;
-      font-size: 0.7rem;
-      color: #b0c4de;
-      letter-spacing: 0.3px;
-    }
-    
-    .code-line {
-      white-space: nowrap;
-      overflow: hidden;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    
-    .code-line span.keyword { color: #c586c0; }
-    .code-line span.func { color: #dcdcaa; }
-    .code-line span.string { color: #ce9178; }
-    
+
     /* ── BADGE LABEL ── */
     .status-label {
       display: inline-flex;
@@ -246,8 +202,13 @@
     }
 
     @keyframes blinkDot {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
+      from {
+        opacity: 0.4;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     /* ── TYPOGRAPHY ── */
@@ -273,7 +234,7 @@
       margin-right: auto;
     }
 
-    /* ── LOADING BAR (HANYA ANIMASI RINGAN) ── */
+    /* ── LOADING BAR ── */
     .loading-line {
       width: 240px;
       height: 3px;
@@ -292,10 +253,15 @@
     }
 
     @keyframes loadingMove {
-      0% { transform: translateX(-150%); }
-      100% { transform: translateX(250%); }
+      0% {
+        transform: translateX(-150%);
+      }
+
+      100% {
+        transform: translateX(250%);
+      }
     }
-    
+
     /* ── TOMBOL WHATSAPP ── */
     .whatsapp-button {
       display: inline-flex;
@@ -303,7 +269,7 @@
       justify-content: center;
       gap: 14px;
       background: linear-gradient(105deg, #25D366 0%, #128C7E 100%);
-      padding: 12px 32px;
+      padding: 14px 36px;
       border-radius: 999px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
       text-decoration: none;
@@ -318,49 +284,56 @@
       backdrop-filter: blur(2px);
       cursor: pointer;
     }
-    
+
     .whatsapp-button:hover {
       transform: scale(1.02) translateY(-2px);
       box-shadow: 0 20px 32px rgba(0, 0, 0, 0.4);
       background: linear-gradient(105deg, #31d46f, #0f9d7e);
     }
-    
+
     .whatsapp-button:active {
       transform: scale(0.98);
     }
-    
+
     .wa-icon {
       width: 22px;
       height: 22px;
       fill: white;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
     }
-    
+
     .wa-text {
       font-weight: 600;
       font-size: 1rem;
       white-space: nowrap;
     }
-    
+
     @media (max-width: 550px) {
       .whatsapp-button {
-        padding: 10px 24px;
+        padding: 12px 28px;
         gap: 10px;
       }
+
       .wa-text {
         font-size: 0.9rem;
       }
+
       .wa-icon {
         width: 18px;
         height: 18px;
       }
-      .coding-terminal {
-        min-width: 170px;
-        padding: 8px 12px;
+
+      .maintenance-panel {
+        padding: 40px 24px 45px;
       }
-      .code-line {
-        white-space: normal;
-        word-break: keep-all;
+
+      .icon-circle svg {
+        width: 44px;
+        height: 44px;
+      }
+
+      .icon-circle {
+        padding: 16px;
       }
     }
 
@@ -372,31 +345,20 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="ambient-grid"></div>
-  
+
   <div class="maintenance-panel">
-    
-    <!-- AREA KARAKTER CODING (STATIS, TIDAK ADA ANIMASI) -->
-    <div class="coder-avatar">
-      <div class="coding-character">
-        <div class="dev-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6zm6 4h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-          </svg>
-        </div>
-        <div class="coding-terminal">
-          <div class="terminal-line">
-            <span class="prompt">$</span>
-            <span class="static-command">npm run dev</span>
-          </div>
-          <div class="code-animation" id="codeSnippet">
-            <div class="code-line"><span class="keyword">const</span> <span class="func">buildUI</span> = () => {</div>
-            <div class="code-line" style="padding-left: 12px;"><span class="keyword">return</span> <span class="string">'✨ immersive experience'</span>;</div>
-            <div class="code-line">};</div>
-          </div>
-        </div>
+
+    <!-- IKON DEVELOPER SEDERHANA (TANPA KODE) -->
+    <div class="developer-icon">
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h-2v-2h2v2zm0-4h-2V7h2v6zm6 4h-2v-2h2v2zm0-4h-2V7h2v6z" />
+        </svg>
       </div>
     </div>
 
@@ -405,16 +367,16 @@
     </div>
 
     <h1>Sedang Membangun<br>Pengalaman Baru</h1>
-    
-    <p>Developer kami sedang menulis kode dengan penuh semangat untuk memberikan performa terbaik & fitur revolusioner. Website akan segera hadir lebih cepat, lebih elegan.</p>
+
+    <p>Developer kami sedang bekerja keras untuk memberikan performa terbaik & fitur revolusioner. Website akan segera
+      hadir lebih cepat, lebih elegan.</p>
 
     <!-- TOMBOL WHATSAPP -->
-    <a href="https://wa.me/6281522775390?text=Halo%20Admin%20Mediator,%20saya%20melihat%20website%20sedang%20dalam%20pemeliharaan.%20Mohon%20informasi%20lebih%20lanjut." 
-       class="whatsapp-button" 
-       target="_blank" 
-       rel="noopener noreferrer">
+    <a href="https://wa.me/6281522775390?text=Halo%20Admin%20Mediator,%20saya%20melihat%20website%20sedang%20dalam%20pemeliharaan.%20Mohon%20informasi%20lebih%20lanjut."
+      class="whatsapp-button" target="_blank" rel="noopener noreferrer">
       <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2 6.798 2 2.552 6.246 2.552 11.454c0 1.698.444 3.355 1.29 4.814L2 22l5.858-1.802c1.404.768 2.983 1.176 4.618 1.176 5.208 0 9.454-4.246 9.454-9.454 0-2.523-.984-4.896-2.77-6.682l-.083-.09zM12.006 20.05c-1.436 0-2.846-.386-4.062-1.112l-.293-.174-3.472 1.067 1.112-3.364-.19-.3a7.97 7.97 0 0 1-1.233-4.22c0-4.406 3.586-7.992 7.992-7.992 2.133 0 4.138.83 5.645 2.337a7.935 7.935 0 0 1 2.338 5.645c0 4.406-3.586 7.992-7.992 7.992h-.045zm4.348-5.983c-.238-.119-1.408-.695-1.627-.774-.218-.08-.377-.119-.536.119-.158.238-.624.775-.764.934-.14.16-.28.18-.518.06-.238-.12-1.005-.37-1.914-1.18-.707-.63-1.185-1.408-1.324-1.647-.14-.238-.015-.367.105-.486.108-.108.238-.278.357-.417.12-.14.16-.238.238-.397.08-.16.04-.298-.02-.417-.06-.12-.536-1.29-.734-1.767-.193-.462-.39-.4-.537-.408a9.55 9.55 0 0 0-.456-.008c-.16 0-.417.06-.636.298-.22.238-.833.813-.833 1.982 0 1.17.852 2.3.97 2.46.12.16 1.666 2.542 4.03 3.563.563.243 1.002.388 1.344.497.564.18 1.077.154 1.482.093.453-.068 1.394-.57 1.59-1.12.196-.55.196-1.02.138-1.118-.06-.1-.22-.16-.46-.278z"/>
+        <path
+          d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2 6.798 2 2.552 6.246 2.552 11.454c0 1.698.444 3.355 1.29 4.814L2 22l5.858-1.802c1.404.768 2.983 1.176 4.618 1.176 5.208 0 9.454-4.246 9.454-9.454 0-2.523-.984-4.896-2.77-6.682l-.083-.09zM12.006 20.05c-1.436 0-2.846-.386-4.062-1.112l-.293-.174-3.472 1.067 1.112-3.364-.19-.3a7.97 7.97 0 0 1-1.233-4.22c0-4.406 3.586-7.992 7.992-7.992 2.133 0 4.138.83 5.645 2.337a7.935 7.935 0 0 1 2.338 5.645c0 4.406-3.586 7.992-7.992 7.992h-.045zm4.348-5.983c-.238-.119-1.408-.695-1.627-.774-.218-.08-.377-.119-.536.119-.158.238-.624.775-.764.934-.14.16-.28.18-.518.06-.238-.12-1.005-.37-1.914-1.18-.707-.63-1.185-1.408-1.324-1.647-.14-.238-.015-.367.105-.486.108-.108.238-.278.357-.417.12-.14.16-.238.238-.397.08-.16.04-.298-.02-.417-.06-.12-.536-1.29-.734-1.767-.193-.462-.39-.4-.537-.408a9.55 9.55 0 0 0-.456-.008c-.16 0-.417.06-.636.298-.22.238-.833.813-.833 1.982 0 1.17.852 2.3.97 2.46.12.16 1.666 2.542 4.03 3.563.563.243 1.002.388 1.344.497.564.18 1.077.154 1.482.093.453-.068 1.394-.57 1.59-1.12.196-.55.196-1.02.138-1.118-.06-.1-.22-.16-.46-.278z" />
       </svg>
       <span class="wa-text">Hubungi Admin Mediator</span>
     </a>
@@ -429,12 +391,9 @@
   </div>
 
   <script>
-    // Tidak ada animasi coding yang memberatkan
-    // Hanya efek hover pada tombol dan loading bar standar
-    // Halaman tetap ringan dan tidak lemot
-    
-    // Menambahkan efek sederhana pada saat hover tombol WhatsApp (sudah di CSS)
-    console.log('Page loaded - light mode, no heavy animations');
+    // Halaman ringan, tanpa animasi coding yang memberatkan
+    console.log('Under Construction - Light Version');
   </script>
 </body>
+
 </html>
