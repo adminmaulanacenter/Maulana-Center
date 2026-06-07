@@ -14,7 +14,6 @@
         rel="stylesheet" />
 
     <style>
-        /* VARIABEL WARNA */
         :root {
             --color-bg: #a80f2d;
             --color-card-bg: #f9ecec;
@@ -35,26 +34,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Menghilangkan highlight biru saat tap di mobile browser */
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* HILANGKAN FOCUS INDICATOR SECARA MENYELURUH */
-        /* Menghilangkan outline dan shadow default pada semua elemen */
         *:focus {
             outline: none !important;
             box-shadow: none !important;
         }
 
-        /* Menghilangkan outline khusus untuk elemen link dan button */
-        a:focus,
-        button:focus,
-        div:focus {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Style hanya untuk navigasi keyboard agar tetap aksesibel */
         *:focus-visible {
             outline: 2px solid var(--color-secondary) !important;
             outline-offset: 4px;
@@ -69,7 +56,6 @@
             overflow-x: hidden;
         }
 
-        /* BACKGROUND DEKORATIF */
         .ambient-bg {
             position: fixed;
             top: 0;
@@ -83,7 +69,6 @@
             pointer-events: none;
         }
 
-        /* TOMBOL KELUAR / KEMBALI */
         .btn-back {
             position: fixed;
             top: 30px;
@@ -114,7 +99,6 @@
             transform: translateX(-5px);
         }
 
-        /* HEADER */
         .header-section {
             max-width: var(--container);
             margin: 100px auto 50px;
@@ -153,7 +137,7 @@
             margin: 0 auto;
         }
 
-        /* MASONRY GALLERY */
+        /* MASONRY DEFAULT (DESKTOP) */
         .gallery-masonry {
             max-width: var(--container);
             margin: 0 auto 100px;
@@ -193,19 +177,8 @@
             opacity: 0.9;
         }
 
-        /* KONTEN TEKS */
         .item-content {
             padding: 20px;
-        }
-
-        .item-content .category {
-            display: block;
-            color: #8c7d75;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 700;
-            margin-bottom: 8px;
         }
 
         .item-content h3 {
@@ -222,10 +195,6 @@
             font-size: 0.9rem;
             line-height: 1.5;
             font-weight: 400;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         /* LIGHTBOX */
@@ -297,7 +266,6 @@
             transform: rotate(90deg);
         }
 
-        /* ANIMASI */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -317,7 +285,7 @@
             }
         }
 
-        /* RESPONSIVE */
+        /* TABLET */
         @media (max-width: 1024px) {
             .gallery-masonry {
                 column-count: 3;
@@ -342,9 +310,34 @@
             }
         }
 
+        /* HP: TETAP PAKAI MASONRY TAPI 2 KOLOM + HILANGKAN ANIMASI AGAR TIDAK KEDIP */
         @media (max-width: 480px) {
             .gallery-masonry {
-                column-count: 1;
+                column-count: 2;
+                column-gap: 12px;
+                padding: 0 12px;
+                display: block;
+                /* pastikan tetap terlihat */
+            }
+
+            .gallery-item {
+                margin-bottom: 12px;
+                transform: none;
+                opacity: 1;
+                animation: none;
+            }
+
+            .item-content {
+                padding: 10px 12px 12px;
+            }
+
+            .item-content h3 {
+                font-size: 0.88rem;
+                margin-bottom: 4px;
+            }
+
+            .item-content p {
+                font-size: 0.76rem;
             }
         }
     </style>
@@ -365,7 +358,6 @@
     </header>
 
     <main class="gallery-masonry">
-
         <div class="gallery-item" onclick="openLightbox(this)">
             <img src="../aset/ogimage.png" alt="Bimbingan">
             <div class="item-content">
@@ -429,7 +421,6 @@
                 <p>Kisah inspiratif dari para senior yang telah sukses beradaptasi di Mesir.</p>
             </div>
         </div>
-
     </main>
 
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -445,17 +436,21 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
 
-            lightboxImg.src = imgSrc;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            setTimeout(() => {
-                document.body.style.overflow = '';
-            }, 300);
+            if (lightbox) {
+                lightbox.classList.remove('active');
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                }, 300);
+            }
         }
 
         document.addEventListener('keydown', (e) => {
