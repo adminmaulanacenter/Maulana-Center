@@ -240,6 +240,7 @@ button {
 .section-head {
   max-width: 720px;
   margin-bottom: 38px;
+  padding: 0px 0px 0px 0px;
 }
 
 .section-head h1,
@@ -1453,24 +1454,19 @@ button[disabled] {
 .page-hero-panel {
   width: var(--container);
   margin: 0 auto;
-  padding: 56px 48px 44px;
-  border-radius: 40px;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px;
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.62)),
-    radial-gradient(circle at top right, rgba(217, 183, 120, 0.18), transparent 28%);
+  background: transparent;
   border: 1px solid rgba(125, 90, 40, 0.12);
-  box-shadow: var(--shadow-soft);
 }
 
 .page-hero-panel::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(120deg, rgba(168, 15, 45, 0.02), transparent 40%),
-    radial-gradient(circle at 85% 22%, rgba(168, 15, 45, 0.08), transparent 22%);
+  background: transparent;
 }
 
 .page-hero-grid {
@@ -1482,7 +1478,7 @@ button[disabled] {
 }
 
 .page-hero-copy h1 {
-  color: #000000;
+  color: #ffffff;
   margin: 12px 0 18px;
   font-family: var(--font-display);
   font-size: clamp(3rem, 5vw, 4.7rem);
@@ -1494,8 +1490,9 @@ button[disabled] {
   margin: 0;
   max-width: 620px;
   line-height: 1.9;
-  color: var(--color-text-soft);
+  color: #ffffff;
 }
+
 
 .page-hero-visual {
   min-height: 340px;
@@ -1686,6 +1683,7 @@ button[disabled] {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: rgba(17, 17, 17, 0.45);
+  padding: 0px;
 }
 
 .article-meta span:last-child {
@@ -2336,7 +2334,11 @@ button[disabled] {
   }
 
   .hero-panel,
-  .page-hero-panel,
+  .page-hero-panel {
+    padding: 0px 20px 44px;
+
+  }
+
   .footer-shell {
     width: auto;
     margin-inline: 9px;
