@@ -179,7 +179,6 @@ button {
 
 .page-wrap {
   position: relative;
-  isolation: isolate;
 }
 
 .page-wrap>main {
